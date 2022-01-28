@@ -5,7 +5,7 @@
     "ws": "^8.4.2"
   },
   "name": "djs-threads",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "🚀 Blazing fast thread channels integration for all Discord.js versions",
   "main": "Base.js",
   "scripts": {

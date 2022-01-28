@@ -46,6 +46,17 @@ new threads.ThreadManager().create(OBJECT) //create only works if ThreadManager'
 						   
 ```
 
+**💻All Events**
+
+```
+	ready
+	threadCreate
+	threadDelete
+	threadUpdate
+	threadMemberUpdate
+	threadMembersUpdate
+```
+
 **NOTE: THIS PACKAGE IS NOT FINISHED YET**
 
 **Made with ❤ By ! SpongeBed#8181**
