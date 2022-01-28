@@ -10,7 +10,7 @@ const Discord = require("discord.js")
 const client = new Discord.Client()
 const threads = require("djs-threads")
 const threadEvents = threads.events
-threads.login("YOUR TOKEN")
+threads.login("YOUR TOKEN", 98303) //98303 is the intent number "98303" means all of the intents are allowed if you want to calculate your intent number you can use https://discord-intents-calculator.vercel.app/ this site to calculate your own bot's intent number
 client.login("YOUR TOKEN")
 
 client.on("ready", () => {
