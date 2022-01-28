@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "events": "^3.3.0",
+    "node-fetch": "^2.6.5",
+    "ws": "^8.4.2"
+  },
+  "name": "djs-threads",
+  "version": "1.0.0",
+  "description": "🚀 Blazing fast thread channels integration for all Discord.js versions",
+  "main": "Base.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord.js",
+    "threads",
+    "djs",
+    "discord-buttons",
+    "discord"
+  ],
+  "author": "SpongeBed",
+  "license": "MIT",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpongeBed81/djs-threads.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SpongeBed81/djs-threads/issues"
+  },
+  "homepage": "https://github.com/SpongeBed81/djs-threads#readme"
+}
