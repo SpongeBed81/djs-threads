@@ -21,7 +21,7 @@ console.log("djs-threads is ready")
 })
 
 client.on("message", (msg) => {
-	if(!message.guild) return
+	if(!msg.guild) return
 	if(msg.author.id == "user_id") {
 	new threads.ThreadManager(msg.channel.id).create({
 	name: 'why-windows-is-better-than-arch',
@@ -34,27 +34,44 @@ client.on("message", (msg) => {
 **💻All Functions**
 
 ```js
-new threads.ThreadManager().create(OBJECT) //create only works if ThreadManager's constructor is a text channel not a thread channel except "create" and "getThreads" function all of the functions uses thread channel ID so if you want to use another functions like "leave" or "remove" you should pass thread channel ID to the constructor
-						   .join()
-						   .leave()
-						   .remove("USER_ID")
-						   .add("USER_ID")
-						   .fetchMember("USER_ID") //use await when calling it
-						   .members() //use await when calling it
-						   .getThreads(OBJECT) //use await when calling it
-						   
+//CREATING THREADS
+new threads.ThreadManager("GUILD_TEXT_CHANNEL_ID").create(OPTIONS_OBJECT)
+
+//JOINING THREADS
+new threads.ThreadManager("GUILD_THREAD_CHANNEL_ID").join()
+
+//LEAVING THREADS
+new threads.ThreadManager("GUILD_THREAD_CHANNEL_ID").leave()
+
+//REMOVING USERS FROM THREADS
+new threads.ThreadManager("GUILD_THREAD_CHANNEL_ID").remove("USER_ID")
+
+//ADDING USERS TO THREADS
+new threads.ThreadManager("GUILD_THREAD_CHANNEL_ID").add("USER_ID")
+
+//FETCHING THREAD MEMBER
+const manager = new threads.ThreadManager("GUILD_THREAD_CHANNEL_ID")
+const fetchMember = await manager.fetchMember("USER_ID")
+
+//GETTING THREAD MEMBERS
+const manager = new threads.ThreadManager("GUILD_THREAD_CHANNEL_ID")
+const getMembers = await manager.members()
+
+//GET THREADS IN A CHANNEL
+const manager = new threads.ThreadManager("GUILD_TEXT_CHANNEL_ID")
+const getMembers = await manager.getThreads({public: true, archived: true}) //this will return all archived and public threads in specified guild text channel						   
 						   
 ```
 
 **💻All Events**
 
 ```
-	ready
-	threadCreate
-	threadDelete
-	threadUpdate
-	threadMemberUpdate
-	threadMembersUpdate
+ready
+threadCreate
+threadDelete
+threadUpdate
+threadMemberUpdate
+threadMembersUpdate
 ```
 
 **NOTE: THIS PACKAGE IS NOT FINISHED YET**
