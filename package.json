@@ -1,11 +1,12 @@
 {
   "dependencies": {
+    "discord.js": "^12.5.3",
     "events": "^3.3.0",
     "node-fetch": "^2.6.5",
     "ws": "^8.4.2"
   },
   "name": "djs-threads",
-  "version": "1.0.2",
+  "version": "1.1.2",
   "description": "🚀 Blazing fast thread channels integration for all Discord.js versions",
   "main": "Base.js",
   "scripts": {
@@ -20,7 +21,6 @@
   ],
   "author": "SpongeBed",
   "license": "MIT",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SpongeBed81/djs-threads.git"
