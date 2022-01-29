@@ -3,10 +3,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-
-
-
-
 const fetch = require("node-fetch")
 const token = require("./GatewayManager").tokenexport
 
@@ -23,7 +19,11 @@ async function quickfetch(URLget, method, bodyget) {
                 body: JSON.stringify(bodyget)
             };
             fetch(URL, requestOptions)
-                .then(response => {})
+                .then(async(response) => {
+                    await response.json().then(data => {
+                       resolve(data)
+                    })
+                })
                 .catch(console.error);
         } else {
             let URL = URLget
@@ -36,7 +36,11 @@ async function quickfetch(URLget, method, bodyget) {
             };
             fetch(URL, requestOptions)
                 .then(async (response) => {
-                    if (method === "GET") {
+                    if(method === "DELETE") {
+                        resolve("OK")
+                    } else if(method === "PUT"){
+                        resolve("OK")
+                    } else {
                         await response.json().then(data => {
                             resolve(data)
                         })
@@ -72,20 +76,28 @@ class ThreadManager {
         if (!creationObject) throw new Error("Creation Object Should Be Provided!")
 
         if (creationObject.hasOwnProperty("messageID")) {
-            quickfetch(`https://discord.com/api/v9/channels/${this.channelid}/messages/${creationObject.messageID}/threads`, "POST", {
+             return quickfetch(`https://discord.com/api/v9/channels/${this.channelid}/messages/${creationObject.messageID}/threads`, "POST", {
                 name: creationObject.name,
                 auto_archive_duration: creationObject.autoArchiveDuration,
                 rate_limit_per_user: creationObject.rateLimitPerUser
+            }).then(async(dataget) => {
+                return new Promise((resolve, reject) => {
+                    resolve(dataget)
+                })
             })
         } else {
             let tip = 11
             if (creationObject.type === "private") tip = 12
-            quickfetch(`https://discord.com/api/v9/channels/${this.channelid}/threads`, "POST", {
+            return quickfetch(`https://discord.com/api/v9/channels/${this.channelid}/threads`, "POST", {
                 name: creationObject.name,
                 auto_archive_duration: creationObject.autoArchiveDuration,
                 type: tip,
                 invitable: creationObject.invitable,
                 rate_limit_per_user: creationObject.rateLimitPerUser
+            }).then(async(dataget) => {
+                return new Promise((resolve, reject) => {
+                    resolve(dataget)
+                })
             })
         }
 
@@ -97,7 +109,11 @@ class ThreadManager {
      * new Threads.ThreadManager("THREAD_ID").join()
      */
     join() {
-        quickfetch(`https://discord.com/api/v9/channels/${this.channelid}/thread-members/@me`, "PUT")
+        return quickfetch(`https://discord.com/api/v9/channels/${this.channelid}/thread-members/@me`, "PUT").then(async(dataget) => {
+            return new Promise((resolve, reject) => {
+                resolve(dataget)
+            })
+        })
     }
     /**
      * Adds a user to the thread.
@@ -107,7 +123,11 @@ class ThreadManager {
      */
     add(userID) {
         if (!userID) throw new Error("User ID Should Be Provided!")
-        quickfetch(`https://discord.com/api/v9/channels/${this.channelid}/thread-members/${userID}`, "PUT")
+       return quickfetch(`https://discord.com/api/v9/channels/${this.channelid}/thread-members/${userID}`, "PUT").then(async(dataget) => {
+        return new Promise((resolve, reject) => {
+            resolve(dataget)
+        })
+    })
     }
     /**
      * Leaves the thread.
@@ -115,7 +135,11 @@ class ThreadManager {
      * new Threads.ThreadManager("THREAD_ID").leave()
      */
     leave() {
-        quickfetch(`https://discord.com/api/v9/channels/${this.channelid}/thread-members/@me`, "DELETE")
+        return quickfetch(`https://discord.com/api/v9/channels/${this.channelid}/thread-members/@me`, "DELETE").then(async(dataget) => {
+            return new Promise((resolve, reject) => {
+                resolve(dataget)
+            })
+        })
     }
     /**
      * Removes a user from the thread.
@@ -125,7 +149,11 @@ class ThreadManager {
      */
     remove(userID) {
         if (!userID) throw new Error("User ID Should Be Provided!")
-        quickfetch(`https://discord.com/api/v9/channels/${this.channelid}/thread-members/${userID}`, "DELETE")
+        return quickfetch(`https://discord.com/api/v9/channels/${this.channelid}/thread-members/${userID}`, "DELETE").then(async(dataget) => {
+            return new Promise((resolve, reject) => {
+                resolve(dataget)
+            })
+        })
     }
     /**
      * Fetches thread member information.
