@@ -1,6 +1,11 @@
 ## djs-threads 🚀
 **Blazing fast thread integration for all Discord.js versions 😃**
 
+**THIS PROJECT IS ARCHIVED**
+
+**this project is archived because Discord will close the API endpoint for API v7 and older versions**
+
+
 **📚Examples:**
 
 **✨Creating threads**
